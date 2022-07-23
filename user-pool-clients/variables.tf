@@ -22,3 +22,8 @@ variable "api_clients" {
   description = "List of api clients to be added to the user pool"
   default = {}
 }
+
+variable "aws_cognito_users" {
+ type = map(string)
+ default = {}
+}
