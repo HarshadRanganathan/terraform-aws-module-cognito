@@ -20,3 +20,15 @@ resource "aws_cognito_user_pool_client" "main" {
     refresh_token = lookup(each.value.token_validity_units, "refresh_token", null)
   }
 }
+
+resource "aws_cognito_user" "default" {
+  for_each     = var.aws_cognito_users
+
+  user_pool_id = var.user_pool_id
+  username     = each.key
+  attributes   = {
+    email = each.value
+    email_verified  = true
+   }
+  message_action = "RESEND"   
+}
