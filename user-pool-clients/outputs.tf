@@ -6,3 +6,11 @@ output "app_clients" {
     secret: client.client_secret
   }]
 }
+
+output "aws_cognito_users" {
+  description = "aws cognito users for user pool"
+  value       = [for user in aws_cognito_user.default: {
+    username: user.username
+    attributes: user.attributes
+  }]
+}
